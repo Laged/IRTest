@@ -37,7 +37,7 @@
 	</div>
 <body>
 <script>
-	var ws = new WebSocket('ws://localhost:3000');
+	var ws = new WebSocket('ws://irtest.azurewebsites.net/');
 	ws.onmessage = function(msg) {
 		var mainContainer = document.getElementById('mainContainer');
 		var dataContainer = document.createElement('div');
