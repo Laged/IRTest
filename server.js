@@ -8,8 +8,12 @@ const app = express()
 			res.sendFile(__dirname + '/index.html' )
 		})
 		.post('/data', (req, res) => {
+			const id = req.body.id;
 			const value = req.body.value;
-			clients.forEach(client => client.send(value));
+			if(id && value) {
+				const data = id + ": " + value;
+				clients.forEach(client => client.send(data));
+			}
 			res.end();
 		})
 		.listen(port, () => console.log('Running on ' + port));
