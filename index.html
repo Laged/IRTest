@@ -3,49 +3,33 @@
 <head>
 	<meta charset='UTF-8'>
 	<title>IR test</title>
-	<style type="text/css">
-	html, body {
-		height: 100%;
-		margin: 0px;
-		padding: 0px;
-	}
-
-	#mainContainer {
-		width: 300px;
-		height: 100%;
-		overflow:hidden;
-	}
-
-	h2 {
-		margin: 2px;
-		border-bottom: 2px solid rgb(0, 66, 80);
-	}
-
-	.dataElement {
-		padding: none;
-		margin: 2px;
-		width: 100%;
-		text-align: left;
-		border-left: 2px solid rgb(0, 66, 80);
-		padding-left: 6px;
-	}
-	</style>
+	<link rel='stylesheet' type='text/css' href='styles.css'/>
+	<link rel='stylesheet' type='text/css' href='vis.min.css'/>
 </head>
 <body>
-	<div id="mainContainer">
-			<h2>Posted values</h2>
+	<div id='container'>
+		<div id='dataGraph'></div>
+		<div id='dataLog'>
+				<h2>Data log</h2>
+				<div class='dataElement'>
+					<p class='data'>e1: 0.4</p>
+					<p class='timeStamp'>11:50</p>
+					<div class='clear'></div>
+				</div>
+				<div class='dataElement'>
+					<p class='data'>e2: 0.4</p>
+					<p class='timeStamp'>11:50</p>
+					<div class='clear'></div>
+				</div>
+		</div>
 	</div>
-<body>
-<script>
-	var ws = new WebSocket('ws://irtest.azurewebsites.net/');
-	ws.onmessage = function(msg) {
-		var mainContainer = document.getElementById('mainContainer');
-		var dataContainer = document.createElement('div');
-		dataContainer.setAttribute('class', 'dataElement');
-		var dataElement = document.createTextNode(msg.data);
-		dataContainer.appendChild(dataElement);
-		mainContainer.appendChild(dataContainer);
-		mainContainer.scrollTop = mainContainer.scrollHeight;
-	};
-</script>
+</body>
+	<script>
+		console.log('Loading..');
+	</script>
+	<script src='vis.min.js'></script>
+	<script src='dataListener.js'></script>
+	<script>
+		console.log('Done!');
+	</script>
 </HTML>

@@ -2,21 +2,28 @@ let clients = [];
 const express = require('express');
 const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
+const moment = require('moment');
 const app = express()
-		.use(bodyParser.urlencoded({extended:true}))
-		.get('/', (req, res) => {
-			res.sendFile(__dirname + '/index.html' )
-		})
-		.post('/data', (req, res) => {
-			const id = req.body.id;
-			const value = req.body.value;
-			if(id && value) {
-				const data = id + ": " + value;
-				clients.forEach(client => client.send(data));
+	.use(express.static('public'))
+	.use(bodyParser.urlencoded({extended:true}))
+	.get('/', (req, res) => {
+		res.sendFile(__dirname + '/index.html' )
+	})
+	.post('/data', (req, res) => {
+		const reqID = req.body.id;
+		const reqValue = req.body.value;
+		if(reqID && reqValue) {
+			const data = {
+				id: reqID,
+				value: reqValue,
+				timeStamp: moment().format('HH:mm')
 			}
-			res.end();
-		})
-		.listen(port, () => console.log('Running on ' + port));
+			console.log(data);
+			clients.forEach(client => client.send(JSON.stringify(data)));
+		}
+		res.end();
+	})
+	.listen(port, () => console.log('Running on ' + port));
 
 
 const WebSocket = require('ws');
