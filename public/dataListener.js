@@ -48,7 +48,7 @@ function addLog(data) {
 	dataContainer.setAttribute('class', 'dataElement');
 	var currentData = document.createElement('p');
 	currentData.setAttribute('class', 'data');
-	var currentDataText = document.createTextNode(data.id + ": " + data.value);
+	var currentDataText = document.createTextNode(data.id + ': ' + data.value);
 	currentData.appendChild(currentDataText);
 	var timeStamp = document.createElement('p');
 	timeStamp.setAttribute('class', 'timeStamp');
@@ -102,7 +102,7 @@ function addGroup(id) {
 }
 
 function addData(data) {
-	console.log("TODO, ADD DATA: ", data);
+	console.log('TODO, ADD DATA: ', data);
 }
 
 
@@ -116,7 +116,7 @@ ws.onmessage = function(msg) {
 	addLog(data);
 	//Check if group exists
 	if (clients.indexOf(data.id) > -1) {
-		console.log("Already got client: " + data.id);
+		console.log('Already got client: ' + data.id);
 		addData(data);
 	} else {
 		clients.push(data.id);
