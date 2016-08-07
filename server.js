@@ -1,6 +1,6 @@
 let clients = [];
 const express = require('express');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 1337;
 const bodyParser = require('body-parser');
 const moment = require('moment');
 const app = express()
