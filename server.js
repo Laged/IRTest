@@ -4,7 +4,7 @@ const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 const moment = require('moment');
 const app = express()
-	.use(express.static(__dirname + '/public'))
+	.use('/', express.static(__dirname + '/public'))
 	.use(bodyParser.urlencoded({extended:true}))
 	.get('/', (req, res) => {
 		res.sendFile(__dirname + '/index.html' )
