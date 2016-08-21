@@ -93,12 +93,22 @@ function addDummyData() {
 }
 
 function addData(data) {
+	//Add new data
 	var now = vis.moment().subtract(1, 'minutes');
 	dataset.add({
 		x: now,
 		y: data.value,
 		group: data.id
 	});
+	//Remove data that is not visible
+	var range = graph2d.getWindow();
+	var interval = range.end - range.start;
+	var oldIds = dataset.getIds({
+		filter: function(item) {
+			return item.x < range.start - interval;
+		}
+	});
+	dataset.remove(oldIds);
 }
 
 
