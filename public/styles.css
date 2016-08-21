@@ -3,7 +3,7 @@ html, body {
 	padding: 0;
 	height: 100%;
 	width: 100%;
-	color: #FFFEE9;
+	color: #F8F8FF;
 }
 
 #container {
@@ -26,7 +26,7 @@ html, body {
 	width: 90%;
 	height: 100%;
 	overflow: hidden;
-	background-color: #FFFEE9;
+	background-color: #F8F8FF;
 }
 
 h2 {
@@ -34,7 +34,7 @@ h2 {
 	padding: 0;
 	font-family: 'Roboto Condensed', sans-serif;
 	font-size: 2em;
-	border-bottom: 2px solid #FFFEE9;
+	border-bottom: 2px solid #F8F8FF;
 	text-align: center;
 	margin-bottom: 0.5em;
 }
@@ -45,8 +45,8 @@ h2 {
 	font-size: 1.2em;
 	font-family: 'Montserrat', sans-serif;
 	margin-top: 2px;
+	margin-left: 2px;
 	width: 100%;
-	border-left: 2px solid #FFFEE9
 }
 
 .dataElement p {

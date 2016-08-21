@@ -18,7 +18,6 @@ const app = express()
 				value: reqValue,
 				timeStamp: moment().format('HH:mm')
 			}
-			console.log(data);
 			clients.forEach(client => client.send(JSON.stringify(data)));
 		}
 		res.end();

@@ -1,9 +1,13 @@
 //Graph parameters
 var dataset = new vis.DataSet();
+dataset.add({
+	x: vis.moment(),
+	y: 10,
+	group: 'test'
+});
 var graph2d;
 //Initialize graph
 function createGraph() {
-	console.log('Creating graph');
 	var container = document.getElementById('dataGraph');
 	var options = {
 		start: vis.moment().add(-1, 'minutes'),
@@ -22,9 +26,7 @@ function createGraph() {
 			orientation: 'bottom'
 		}
 	};
-
 	graph2d = new vis.Graph2d(container, dataset, options);
-	console.log('Graph initialized');
 
 	//Define the rendering step
 	function renderStep() {
@@ -32,11 +34,11 @@ function createGraph() {
 		var range = graph2d.getWindow();
 		var interval = range.end - range.start;
 		graph2d.setWindow(now - interval, now, {animation: false});
-		setTimeout(renderStep, 500);
+		//setTimeout(renderStep, 500);
+		requestAnimationFrame(renderStep);
 	}
+	//Start rendering
 	renderStep();
-
-	console.log('Graph created');
 }
 
 //Add data to log
@@ -90,40 +92,24 @@ function addDummyData() {
 	setTimeout(addDummyData, 500);
 }
 
-function addGroup(id) {
-	console.log('TODO, ADD GROUP: ' + id);
-	/*
-	CREATE GROUP WITH ID..
-	dataset.add({
-		id: id,
-		content: id
-	});
-	*/
-}
-
 function addData(data) {
-	console.log('TODO, ADD DATA: ', data);
+	var now = vis.moment().subtract(1, 'minutes');
+	dataset.add({
+		x: now,
+		y: data.value,
+		group: data.id
+	});
 }
 
 
 //Listen to websockets
 var ws = new WebSocket('ws://irtest.azurewebsites.net/');
-//var ws = new WebSocket('ws://localhost:3000/');
-var clients = [];
+//var ws = new WebSocket('ws://localhost:1337/');
 ws.onmessage = function(msg) {
 	//Parse data
 	var data = JSON.parse(msg.data);
 	addLog(data);
-	//Check if group exists
-	if (clients.indexOf(data.id) > -1) {
-		console.log('Already got client: ' + data.id);
-		addData(data);
-	} else {
-		clients.push(data.id);
-		addGroup(data.id);
-	}
+	addData(data);
 };
 
 createGraph();
-addDummyData();
-//setInterval(updateGraph, 15*1000);
