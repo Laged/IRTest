@@ -15,7 +15,7 @@ function createGraph() {
 		dataAxis: {
 			left: {
 				range: {
-					min: 0, max: 1
+					min: -1, max: 2
 				}
 			}
 		},
