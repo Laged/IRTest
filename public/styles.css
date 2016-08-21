@@ -41,6 +41,8 @@ h2 {
 
 .dataElement {
 	margin: 0;
+	margin-left: 3px;
+	margin-right: 3px;
 	padding: 0;
 	font-size: 1.2em;
 	font-family: 'Montserrat', sans-serif;
